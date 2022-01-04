@@ -1,0 +1,41 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+int solution(int num) {
+    int pos=0;
+    long long n =num;
+    while(1)
+    {
+        if(pos>499)
+        {
+            break;
+        }
+        if(n==1)
+        {
+            break;
+        }
+        if(n%2==0)
+        {
+            n/=2;
+            pos++;
+        }
+        else
+        {
+            n=n*3+1;
+            pos++;
+        }
+        //6 3 10 5 16  8 4 2 1
+    }
+    
+    if(pos>499)
+    {
+        return -1;
+    }
+    else
+    {
+        return pos;
+    }
+}

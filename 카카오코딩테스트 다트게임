@@ -1,0 +1,59 @@
+#include <string>
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+
+int solution(string dartResult) {
+    int answer = 0;
+    int i=0;
+    int j=0;
+    int n=0;
+    int tmp[3];
+    int num;
+    
+    while(i<3)
+    {
+        n=1;
+        int num=dartResult[j]-'0';
+        if(dartResult[j]=='1'&& dartResult[j+1]=='0')
+        {
+            j++;
+            num=10;
+        }
+        if(dartResult[j+1]=='D')
+        {
+            n=2;
+        }
+        else if(dartResult[j+1]=='T')
+        {
+            n=3;
+        }
+        tmp[i]=pow(num,n);
+        
+        if(dartResult[j+2]=='*')
+        {
+            if(i==0)
+            {
+                tmp[i]*=2;
+            }
+            else
+            {
+                tmp[i]*=2;
+                tmp[i-1]*=2;
+            }
+            j++;
+        }
+        
+        else if(dartResult[j+2]=='#')
+        {
+            tmp[i]*=-1;
+            j++;
+        }
+        
+        i++;
+        j+=2;
+    }
+    answer=tmp[0]+tmp[1]+tmp[2];
+    return answer;
+}
